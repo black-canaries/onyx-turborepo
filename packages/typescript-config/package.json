@@ -1,0 +1,27 @@
+{
+  "name": "@repo/typescript-config",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "react-library.json",
+    "expo.json",
+    "electron.json",
+    "node.json",
+    "backend.json"
+  ],
+  "exports": {
+    "./base": "./base.json",
+    "./next": "./nextjs.json",
+    "./react-library": "./react-library.json",
+    "./expo": "./expo.json",
+    "./electron": "./electron.json",
+    "./node": "./node.json",
+    "./backend": "./backend.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
