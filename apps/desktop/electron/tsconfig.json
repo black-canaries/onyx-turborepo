@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/typescript-config/electron",
+  "compilerOptions": {
+    "outDir": "../dist-electron",
+    "rootDir": "./",
+    "composite": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node"
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["../dist-electron", "../.next", "../node_modules"]
+}

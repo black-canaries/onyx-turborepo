@@ -1,0 +1,11 @@
+{
+  "extends": "@repo/typescript-config/expo",
+  "compilerOptions": {
+    "strict": true,
+    "types": [
+      "expo",
+      "react",
+      "react-native"
+    ]
+  }
+}

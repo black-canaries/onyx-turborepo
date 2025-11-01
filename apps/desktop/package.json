@@ -1,0 +1,47 @@
+{
+  "name": "desktop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm run dev:electron",
+    "dev:next": "next dev -p 3010",
+    "dev:electron": "concurrently -k \"pnpm run dev:next\" \"pnpm run watch:electron\" \"pnpm run start:electron:dev\"",
+    "watch:electron": "tsc -p electron/tsconfig.json --watch",
+    "start:electron:dev": "wait-on tcp:3010 dist-electron/main.js && cross-env NEXT_DEV_SERVER_URL=http://localhost:3010 electron dist-electron/main.js",
+    "build": "next build && pnpm run build:electron",
+    "build:electron": "tsc -p electron/tsconfig.json",
+    "start": "concurrently -k \"pnpm run start:next\" \"pnpm run start:electron\"",
+    "start:next": "next start -p 3010",
+    "start:electron": "wait-on tcp:3010 dist-electron/main.js && cross-env NODE_ENV=production NEXT_DEV_SERVER_URL=http://localhost:3010 electron dist-electron/main.js",
+    "prestart:electron": "pnpm run build:electron",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/convex": "workspace:*",
+    "@repo/supabase": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "next": "16.0.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.16",
+    "@types/electron": "^1.6.0",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^31.7.7",
+    "eslint": "^9.38.0",
+    "eslint-config-next": "16.0.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.1.16",
+    "typescript": "5.9.2",
+    "wait-on": "^7.2.0"
+  }
+}

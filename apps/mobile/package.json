@@ -1,0 +1,47 @@
+{
+  "name": "mobile",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "expo start --port 8082",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.28.0",
+    "@expo/metro-runtime": "~6.1.2",
+    "@repo/convex": "workspace:*",
+    "@repo/supabase": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "@supabase/auth-js": "^2.78.0",
+    "@supabase/functions-js": "^2.78.0",
+    "@supabase/postgrest-js": "^2.78.0",
+    "@supabase/realtime-js": "^2.78.0",
+    "@supabase/supabase-js": "^2.78.0",
+    "convex": "^1.28.0",
+    "expo": "~54.0.20",
+    "expo-modules-core": "~3.0.23",
+    "expo-status-bar": "~3.0.8",
+    "fbjs": "^3.0.5",
+    "inline-style-prefixer": "^7.0.1",
+    "invariant": "^2.2.4",
+    "react": "^19.1.0",
+    "react-native": "0.81.5",
+    "react-native-web": "^0.21.2",
+    "react-refresh": "^0.14.2",
+    "styleq": "^0.2.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "~19.1.0",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "eslint": "^9.38.0",
+    "typescript": "~5.9.2"
+  },
+  "private": true
+}

@@ -1,0 +1,8 @@
+@import "@repo/ui/styles.css";
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    font-feature-settings: "cv11", "cv06", "cv12";
+  }
+}
