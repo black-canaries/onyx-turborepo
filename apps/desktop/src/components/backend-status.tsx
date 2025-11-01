@@ -51,14 +51,14 @@ export function BackendStatus() {
     {
       id: "supabase",
       title: "Supabase",
-      description: "EXPO/NEXT public keys enable realtime auth & storage across form factors.",
+      description: "Realtime database, auth, and storage services shared across apps.",
       configured: Boolean(supabaseClient),
       docs: "https://supabase.com/docs",
     },
     {
       id: "convex",
       title: "Convex",
-      description: "Bring reactive data-layer helpers into the desktop shell with one import.",
+      description: "Reactive backend with automatic syncing and serverless functions.",
       configured: Boolean(convexClient),
       docs: "https://docs.convex.dev",
     },
@@ -77,10 +77,12 @@ export function BackendStatus() {
             </CardTitle>
             <CardDescription>{integration.description}</CardDescription>
           </CardHeader>
-          <CardContent className="flex items-center justify-between gap-4">
-            <span className="text-sm text-muted-foreground">
-              {integration.configured ? "Clients available via shared helpers." : "Add environment variables to enable."}
-            </span>
+          <CardContent className="flex items-center justify-between gap-3">
+            <div className="text-sm text-muted-foreground">
+              {integration.configured
+                ? "Clients are ready to be consumed throughout the workspace."
+                : "Populate the .env file to enable the shared client helpers."}
+            </div>
             <Button asChild variant="ghost">
               <a
                 href={integration.docs}

@@ -3,7 +3,9 @@
   "compilerOptions": {
     "outDir": "../dist-electron",
     "rootDir": "./",
-    "composite": false
+    "composite": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node"
   },
   "include": ["./**/*.ts"],
   "exclude": ["../dist-electron", "../.next", "../node_modules"]

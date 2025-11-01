@@ -10,77 +10,83 @@ import {
 } from "@repo/ui";
 import { BackendStatus } from "../components/backend-status";
 
-const desktopTasks = [
+const features = [
   {
-    title: "Launch dev servers",
-    steps: ["pnpm install", "pnpm run dev --filter desktop"],
+    title: "Shared UI with shadcn/ui",
+    description:
+      "Import ready-to-use components from @repo/ui to keep design tokens centralised across platforms.",
   },
   {
-    title: "Configure backend",
-    steps: ["Create apps/desktop/.env.local", "Set NEXT_PUBLIC_SUPABASE_URL/ANON_KEY", "Set NEXT_PUBLIC_CONVEX_URL"],
+    title: "Backend helpers",
+    description:
+      "Bootstrap Convex and Supabase clients from shared wrappers so every app uses the same conventions.",
   },
   {
-    title: "Ship UI updates",
-    steps: ["Edit packages/ui", "Re-use components across web/mobile/desktop"],
+    title: "Typed workspaces",
+    description:
+      "A single TypeScript and ESLint configuration ensures consistent tooling between web, mobile, and desktop.",
   },
 ];
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col gap-12 px-8 py-16">
+    <main className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col gap-12 px-6 py-16">
       <section className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
         <div className="flex flex-col gap-6">
           <Badge variant="secondary" className="w-fit">
-            Electron + Next.js
+            Multiplatform app
           </Badge>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">
-            Build desktop surfaces with the same packages powering web and mobile.
+            Full-stack monorepo with shared UI, backend clients, and platform targets.
           </h1>
           <p className="text-lg text-muted-foreground">
-            This renderer consumes `@repo/ui` for styling plus the shared Convex and Supabase helpers. Electron wraps
-            the Next.js dev server so changes apply instantly.
+            Next.js for web & desktop, Expo for mobile, and Electron for desktop shell — all powered by shared
+            packages that keep implementation details in sync.
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <Button asChild>
-              <Link href="https://www.electronjs.org/docs/latest" target="_blank">
-                Electron docs
+              <Link href="https://turbo.build" target="_blank">
+                Explore Turbo
               </Link>
             </Button>
             <Button asChild variant="ghost">
-              <Link href="https://nextjs.org/docs" target="_blank">
-                Next.js docs
+              <Link href="https://github.com/vercel/turborepo" target="_blank">
+                View reference
               </Link>
             </Button>
           </div>
         </div>
         <Card>
           <CardHeader>
-            <CardTitle>Workspace automation</CardTitle>
+            <CardTitle>Workspace at a glance</CardTitle>
             <CardDescription>
-              Turborepo pipelines coordinate builds across renderer, preload, and main processes.
+              Shared packages are consumed by every target so upgrades happen once.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-3 text-sm text-muted-foreground">
-            {desktopTasks.map((task) => (
-              <div key={task.title}>
-                <p className="font-medium text-foreground">{task.title}</p>
-                <ul className="list-disc pl-5">
-                  {task.steps.map((step) => (
-                    <li key={step}>{step}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <p>• `apps/web` — Next.js 16 web app using shared UI and backend clients.</p>
+            <p>• `apps/mobile` — Expo app importing native UI primitives and helpers.</p>
+            <p>• `apps/desktop` — Electron shell with Next.js renderer consuming shared modules.</p>
           </CardContent>
         </Card>
       </section>
 
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {features.map((feature) => (
+          <Card key={feature.title}>
+            <CardHeader>
+              <CardTitle className="text-base">{feature.title}</CardTitle>
+              <CardDescription>{feature.description}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))}
+      </section>
+
       <section className="space-y-4">
         <div>
-          <h2 className="text-2xl font-semibold">Backend integrations</h2>
+          <h2 className="text-2xl font-semibold">Backend connections</h2>
           <p className="text-sm text-muted-foreground">
-            Shared helpers keep desktop in lock-step with web and mobile targets. Provide env vars to enable live
-            connections.
+            Drop environment variables into `.env` files to activate the shared Convex and Supabase clients.
           </p>
         </div>
         <BackendStatus />

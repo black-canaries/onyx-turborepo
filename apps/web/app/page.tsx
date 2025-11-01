@@ -34,7 +34,7 @@ export default function Home() {
       <section className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
         <div className="flex flex-col gap-6">
           <Badge variant="secondary" className="w-fit">
-            Turborepo template
+            Multiplatform app
           </Badge>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">
             Full-stack monorepo with shared UI, backend clients, and platform targets.
