@@ -4,13 +4,14 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
+    "dev": "next dev --turbopack --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@gluestack/ui-next-adapter": "^3.0.3",
     "@repo/convex": "workspace:*",
     "@repo/supabase": "workspace:*",
     "@repo/ui": "workspace:*",
@@ -21,12 +22,13 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.16",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
-    "@tailwindcss/postcss": "^4.1.16",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.38.0",
+    "nativewind": "^4.1.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^4.1.16",
     "typescript": "5.9.2"

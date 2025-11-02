@@ -5,6 +5,7 @@ import { cn } from "../lib/utils";
 export interface NativeButtonProps extends PressableProps {
   label: string;
   variant?: "primary" | "secondary" | "ghost";
+  className?: string;
 }
 
 export function Button({ label, variant = "primary", className, ...props }: NativeButtonProps) {

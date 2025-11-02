@@ -1,49 +1,55 @@
-"use client";
-
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
+import { Pressable, type PressableProps, View, Text as RNText } from "react-native";
 import { cn } from "../../lib/utils";
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline: "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "text-primary hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-);
-
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
+export interface ButtonProps extends Omit<PressableProps, "children"> {
+  action?: "primary" | "secondary" | "positive" | "negative" | "default";
+  variant?: "link" | "outline" | "solid";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  isDisabled?: boolean;
+  className?: string;
+  children?: React.ReactNode;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+const actionClasses = {
+  primary: "bg-primary-500 data-[hover=true]:bg-primary-600 data-[active=true]:bg-primary-700 border-primary-300",
+  secondary: "bg-secondary-500 border-secondary-300 data-[hover=true]:bg-secondary-600",
+  positive: "bg-success-500 border-success-300 data-[hover=true]:bg-success-600",
+  negative: "bg-error-500 border-error-300 data-[hover=true]:bg-error-600",
+  default: "bg-transparent data-[hover=true]:bg-background-50",
+};
+
+const variantClasses = {
+  link: "px-0",
+  outline: "bg-transparent border data-[hover=true]:bg-background-50",
+  solid: "",
+};
+
+const sizeClasses = {
+  xs: "px-3.5 h-8",
+  sm: "px-4 h-9",
+  md: "px-5 h-10",
+  lg: "px-6 h-11",
+  xl: "px-7 h-12",
+};
+
+export const Button = React.forwardRef<View, ButtonProps>(
+  ({ action = "primary", variant = "solid", size = "md", isDisabled, className, ...props }, ref) => {
+    const classes = cn(
+      "rounded bg-primary-500 flex-row items-center justify-center",
+      "data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2",
+      "data-[disabled=true]:opacity-40 gap-2",
+      actionClasses[action],
+      variantClasses[variant],
+      sizeClasses[size],
+      className
+    );
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+      <Pressable
         ref={ref}
+        disabled={isDisabled}
+        className={classes}
+        data-disabled={isDisabled}
         {...props}
       />
     );
@@ -51,4 +57,42 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export interface ButtonTextProps {
+  children?: React.ReactNode;
+  className?: string;
+}
+
+export const ButtonText = React.forwardRef<RNText, ButtonTextProps>(
+  ({ children, className, ...props }, ref) => {
+    const classes = cn(
+      "text-typography-0 font-semibold web:select-none",
+      className
+    );
+    return (
+      <RNText ref={ref} className={classes} {...props}>
+        {children}
+      </RNText>
+    );
+  }
+);
+ButtonText.displayName = "ButtonText";
+
+export interface ButtonIconProps {
+  as?: React.ComponentType<any>;
+  className?: string;
+  children?: React.ReactNode;
+}
+
+export const ButtonIcon = React.forwardRef<any, ButtonIconProps>(
+  ({ as: Component, className, children, ...props }, ref) => {
+    const classes = cn("fill-none", className);
+    if (Component) {
+      return <Component ref={ref} className={classes} {...props} />;
+    }
+    if (children) {
+      return <View ref={ref} className={classes} {...props}>{children}</View>;
+    }
+    return null;
+  }
+);
+ButtonIcon.displayName = "ButtonIcon";

@@ -1,13 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import { useMemo } from "react";
-import {
-  ScrollView,
-  Text,
-  View,
-  Linking,
-} from "react-native";
+import { ScrollView, Linking } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Button, cn } from "@repo/ui/native";
+import {
+  Button,
+  ButtonText,
+  Text,
+  VStack,
+  HStack,
+  Heading,
+  Badge,
+  BadgeText,
+  Box,
+  cn,
+} from "@repo/ui";
 import { createSupabaseBrowserClient } from "@repo/supabase";
 import { createConvexReactClient } from "@repo/convex";
 
@@ -67,67 +73,63 @@ export default function App() {
     <SafeAreaView className="flex-1 bg-zinc-950">
       <StatusBar style="light" />
       <ScrollView contentContainerStyle={{ padding: 24, gap: 32 }}>
-        <View className="gap-3">
-          <Text className="text-indigo-500 font-semibold uppercase tracking-wider text-xs">
-            Multiplatform app
-          </Text>
-          <Text className="text-zinc-50 text-[28px] font-bold leading-[36px]">
+        <VStack space="md">
+          <Badge variant="outline" action="muted" className="w-fit">
+            <BadgeText className="text-indigo-500 uppercase">Multiplatform app</BadgeText>
+          </Badge>
+          <Heading size="5xl" className="text-zinc-50">
             Full-stack monorepo with shared UI, backend clients, and platform targets.
-          </Text>
-          <Text className="text-zinc-400 text-base leading-6">
+          </Heading>
+          <Text size="lg" className="text-zinc-400">
             Next.js for web & desktop, Expo for mobile, and Electron for desktop shell — all powered by shared
             packages that keep implementation details in sync.
           </Text>
-          <View className="flex-row gap-3 flex-wrap mt-1">
-            <Button
-              label="Explore Turbo"
-              variant="primary"
-              onPress={() => Linking.openURL("https://turbo.build")}
-            />
-            <Button
-              label="View reference"
-              variant="ghost"
-              onPress={() => Linking.openURL("https://github.com/vercel/turborepo")}
-            />
-          </View>
-        </View>
+          <HStack space="md" className="flex-wrap">
+            <Button onPress={() => Linking.openURL("https://turbo.build")}>
+              <ButtonText>Explore Turbo</ButtonText>
+            </Button>
+            <Button variant="outline" action="secondary" onPress={() => Linking.openURL("https://github.com/vercel/turborepo")}>
+              <ButtonText>View reference</ButtonText>
+            </Button>
+          </HStack>
+        </VStack>
 
-        <View className="bg-zinc-900 rounded-2xl p-5 gap-3 border border-zinc-800">
-          <Text className="text-zinc-100 text-lg font-semibold">Workspace at a glance</Text>
-          <Text className="text-zinc-500 text-sm leading-5">
+        <Box className="bg-zinc-900 rounded-2xl p-5 gap-3 border border-zinc-800">
+          <Heading size="lg" className="text-zinc-100">Workspace at a glance</Heading>
+          <Text size="sm" className="text-zinc-500">
             Shared packages are consumed by every target so upgrades happen once.
           </Text>
-          <View className="gap-2 mt-1">
-            <Text className="text-zinc-500 text-sm leading-5">
+          <VStack space="sm" className="mt-1">
+            <Text size="sm" className="text-zinc-500">
               • `apps/web` — Next.js 16 web app using shared UI and backend clients.
             </Text>
-            <Text className="text-zinc-500 text-sm leading-5">
+            <Text size="sm" className="text-zinc-500">
               • `apps/mobile` — Expo app importing native UI primitives and helpers.
             </Text>
-            <Text className="text-zinc-500 text-sm leading-5">
+            <Text size="sm" className="text-zinc-500">
               • `apps/desktop` — Electron shell with Next.js renderer consuming shared modules.
             </Text>
-          </View>
-        </View>
+          </VStack>
+        </Box>
 
-        <View className="gap-4">
-          <Text className="text-zinc-50 text-xl font-semibold">Features</Text>
-          <View className="gap-4">
+        <VStack space="md">
+          <Heading size="xl" className="text-zinc-50">Features</Heading>
+          <VStack space="md">
             {features.map((feature) => (
-              <View key={feature.title} className="bg-zinc-900 rounded-2xl p-5 gap-2 border border-zinc-800">
-                <Text className="text-zinc-100 text-base font-semibold">{feature.title}</Text>
-                <Text className="text-zinc-500 text-sm leading-5">{feature.description}</Text>
-              </View>
+              <Box key={feature.title} className="bg-zinc-900 rounded-2xl p-5 gap-2 border border-zinc-800">
+                <Heading size="md" className="text-zinc-100">{feature.title}</Heading>
+                <Text size="sm" className="text-zinc-500">{feature.description}</Text>
+              </Box>
             ))}
-          </View>
-        </View>
+          </VStack>
+        </VStack>
 
-        <View className="gap-4">
-          <Text className="text-zinc-50 text-xl font-semibold">Backend connections</Text>
-          <Text className="text-zinc-500 text-sm leading-5">
+        <VStack space="md">
+          <Heading size="xl" className="text-zinc-50">Backend connections</Heading>
+          <Text size="sm" className="text-zinc-500">
             Drop environment variables into `.env` files to activate the shared Convex and Supabase clients.
           </Text>
-          <View className="gap-4">
+          <VStack space="md">
             <StatusCard
               title="Supabase"
               description="Realtime database, auth, and storage services shared across apps."
@@ -140,8 +142,8 @@ export default function App() {
               configured={Boolean(convexClient)}
               docsUrl="https://docs.convex.dev"
             />
-          </View>
-        </View>
+          </VStack>
+        </VStack>
       </ScrollView>
     </SafeAreaView>
   );
@@ -156,29 +158,27 @@ type StatusCardProps = {
 
 function StatusCard({ title, description, configured, docsUrl }: StatusCardProps) {
   return (
-    <View className="bg-zinc-900 rounded-2xl p-5 gap-3 border border-zinc-800">
-      <View className="flex-row justify-between items-center gap-3 mb-1">
-        <Text className="text-zinc-100 text-base font-semibold flex-1">{title}</Text>
-        <View className={cn("px-2 py-1 rounded-md", configured ? "bg-zinc-800" : "bg-red-950")}>
-          <Text className="text-zinc-50 text-xs font-semibold">
+    <Box className="bg-zinc-900 rounded-2xl p-5 gap-3 border border-zinc-800">
+      <HStack className="justify-between items-center gap-3 mb-1">
+        <Heading size="md" className="text-zinc-100 flex-1">{title}</Heading>
+        <Badge variant="solid" action={configured ? "success" : "error"} className="px-2 py-1">
+          <BadgeText className="text-xs">
             {configured ? "Connected" : "Awaiting env"}
-          </Text>
-        </View>
-      </View>
-      <Text className="text-zinc-500 text-sm leading-5">{description}</Text>
-      <View className="flex-row justify-between items-center gap-3 mt-1">
-        <Text className="text-zinc-500 text-sm leading-5 flex-1">
+          </BadgeText>
+        </Badge>
+      </HStack>
+      <Text size="sm" className="text-zinc-500">{description}</Text>
+      <HStack className="justify-between items-center gap-3 mt-1">
+        <Text size="sm" className="text-zinc-500 flex-1">
           {configured
             ? "Clients are ready to be consumed throughout the workspace."
             : "Populate the .env file to enable the shared client helpers."}
         </Text>
-        <Button
-          label="Docs"
-          variant="ghost"
-          onPress={() => Linking.openURL(docsUrl)}
-        />
-      </View>
-    </View>
+        <Button variant="outline" action="secondary" onPress={() => Linking.openURL(docsUrl)}>
+          <ButtonText>Docs</ButtonText>
+        </Button>
+      </HStack>
+    </Box>
   );
 }
 

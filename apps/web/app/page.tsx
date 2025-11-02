@@ -1,12 +1,18 @@
 import Link from "next/link";
 import {
   Badge,
+  BadgeText,
   Button,
+  ButtonText,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  VStack,
+  HStack,
+  Heading,
+  Text,
 } from "@repo/ui";
 import { BackendStatus } from "./components/backend-status";
 
@@ -32,30 +38,26 @@ export default function Home() {
   return (
     <main className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col gap-12 px-6 py-16">
       <section className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
-        <div className="flex flex-col gap-6">
-          <Badge variant="secondary" className="w-fit">
-            Multiplatform app
+        <VStack className="gap-6">
+          <Badge variant="outline" action="muted" className="w-fit">
+            <BadgeText>Multiplatform app</BadgeText>
           </Badge>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">
+          <Heading size="5xl" className="text-3xl sm:text-5xl">
             Full-stack monorepo with shared UI, backend clients, and platform targets.
-          </h1>
-          <p className="text-lg text-muted-foreground">
+          </Heading>
+          <Text size="lg" className="text-muted-foreground">
             Next.js for web & desktop, Expo for mobile, and Electron for desktop shell — all powered by shared
             packages that keep implementation details in sync.
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <Button asChild>
-              <Link href="https://turbo.build" target="_blank">
-                Explore Turbo
-              </Link>
+          </Text>
+          <HStack space="md" className="flex-wrap">
+            <Button onPress={() => typeof window !== "undefined" && window.open("https://turbo.build", "_blank")}>
+              <ButtonText>Explore Turbo</ButtonText>
             </Button>
-            <Button asChild variant="ghost">
-              <Link href="https://github.com/vercel/turborepo" target="_blank">
-                View reference
-              </Link>
+            <Button variant="outline" action="secondary" onPress={() => typeof window !== "undefined" && window.open("https://github.com/vercel/turborepo", "_blank")}>
+              <ButtonText>View reference</ButtonText>
             </Button>
-          </div>
-        </div>
+          </HStack>
+        </VStack>
         <Card>
           <CardHeader>
             <CardTitle>Workspace at a glance</CardTitle>
@@ -63,10 +65,10 @@ export default function Home() {
               Shared packages are consumed by every target so upgrades happen once.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm text-muted-foreground">
-            <p>• `apps/web` — Next.js 16 web app using shared UI and backend clients.</p>
-            <p>• `apps/mobile` — Expo app importing native UI primitives and helpers.</p>
-            <p>• `apps/desktop` — Electron shell with Next.js renderer consuming shared modules.</p>
+          <CardContent className="space-y-2">
+            <Text size="sm" className="text-muted-foreground">• `apps/web` — Next.js 16 web app using shared UI and backend clients.</Text>
+            <Text size="sm" className="text-muted-foreground">• `apps/mobile` — Expo app importing native UI primitives and helpers.</Text>
+            <Text size="sm" className="text-muted-foreground">• `apps/desktop` — Electron shell with Next.js renderer consuming shared modules.</Text>
           </CardContent>
         </Card>
       </section>
@@ -82,15 +84,15 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="space-y-4">
-        <div>
-          <h2 className="text-2xl font-semibold">Backend connections</h2>
-          <p className="text-sm text-muted-foreground">
+      <VStack space="md">
+        <VStack space="sm">
+          <Heading size="2xl">Backend connections</Heading>
+          <Text size="sm" className="text-muted-foreground">
             Drop environment variables into `.env` files to activate the shared Convex and Supabase clients.
-          </p>
-        </div>
+          </Text>
+        </VStack>
         <BackendStatus />
-      </section>
+      </VStack>
     </main>
   );
 }

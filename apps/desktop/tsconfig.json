@@ -1,16 +1,17 @@
 {
-  "extends": "@repo/typescript-config/next",
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "include": [
-    "next-env.d.ts",
-    "src/**/*",
-    "electron/**/*",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+	"extends": "@repo/typescript-config/next",
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			"@/*": ["./*"]
+		}
+	},
+	"include": [
+		"next-env.d.ts",
+		"nativewind-env.d.ts",
+		"src/**/*",
+		"electron/**/*",
+		".next/types/**/*.ts"
+	],
+	"exclude": ["node_modules"]
 }

@@ -3,12 +3,16 @@
 import { useMemo } from "react";
 import {
   Badge,
+  BadgeText,
   Button,
+  ButtonText,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  HStack,
+  Text,
 } from "@repo/ui";
 import { createSupabaseBrowserClient } from "@repo/supabase";
 import { createConvexReactClient } from "@repo/convex";
@@ -69,37 +73,37 @@ export function BackendStatus() {
       {integrations.map((integration) => (
         <Card key={integration.id}>
           <CardHeader>
-            <CardTitle className="flex items-center justify-between gap-3 text-base">
-              {integration.title}
-              <Badge variant={integration.configured ? "secondary" : "destructive"}>
-                {integration.configured ? "Connected" : "Awaiting env"}
+            <HStack className="items-center justify-between gap-3">
+              <CardTitle className="text-base">{integration.title}</CardTitle>
+              <Badge variant="solid" action={integration.configured ? "success" : "error"}>
+                <BadgeText>{integration.configured ? "Connected" : "Awaiting env"}</BadgeText>
               </Badge>
-            </CardTitle>
+            </HStack>
             <CardDescription>{integration.description}</CardDescription>
           </CardHeader>
-          <CardContent className="flex items-center justify-between gap-3">
-            <div className="text-sm text-muted-foreground">
-              {integration.configured
-                ? "Clients are ready to be consumed throughout the workspace."
-                : "Populate the .env file to enable the shared client helpers."}
-            </div>
-            <Button asChild variant="ghost">
-              <a
-                href={integration.docs}
-                target="_blank"
-                rel="noreferrer"
-                onClick={(event) => {
-                  if (window.desktopBridge?.openExternal) {
-                    event.preventDefault();
-                    void window.desktopBridge.openExternal(integration.docs).catch(() => {
+          <CardContent>
+            <HStack className="items-center justify-between gap-3">
+              <Text size="sm" className="text-muted-foreground flex-1">
+                {integration.configured
+                  ? "Clients are ready to be consumed throughout the workspace."
+                  : "Populate the .env file to enable the shared client helpers."}
+              </Text>
+              <Button 
+                variant="outline" 
+                action="secondary" 
+                onPress={() => {
+                  if (typeof window !== "undefined" && (window as any).desktopBridge?.openExternal) {
+                    void (window as any).desktopBridge.openExternal(integration.docs).catch(() => {
                       window.open(integration.docs, "_blank");
                     });
+                  } else if (typeof window !== "undefined") {
+                    window.open(integration.docs, "_blank");
                   }
                 }}
               >
-                Docs
-              </a>
-            </Button>
+                <ButtonText>Docs</ButtonText>
+              </Button>
+            </HStack>
           </CardContent>
         </Card>
       ))}
