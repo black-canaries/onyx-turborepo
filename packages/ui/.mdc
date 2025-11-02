@@ -19,23 +19,23 @@ This is a shared UI component library based on shadcn/ui, providing reusable com
 
 ```
 packages/ui/
-??? src/
-?   ??? components/
-?   ?   ??? ui/             # shadcn/ui components
-?   ?       ??? button.tsx
-?   ?       ??? card.tsx
-?   ?       ??? badge.tsx
-?   ?       ??? input.tsx
-?   ?       ??? label.tsx
-?   ??? lib/
-?   ?   ??? utils.ts        # Utility functions (cn, etc.)
-?   ??? native/             # React Native components
-?   ?   ??? button.tsx
-?   ?   ??? index.ts
-?   ??? index.ts            # Main export file
-??? styles.css              # Tailwind CSS imports
-??? tailwind.config.ts      # Tailwind configuration
-??? package.json
+├── src/
+│   ├── components/
+│   │   ├── ui/             # shadcn/ui components
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── input.tsx
+│   │   │   └── label.tsx
+│   ├── lib/
+│   │   └── utils.ts        # Utility functions (cn, etc.)
+│   ├── native/             # React Native components
+│   │   ├── button.tsx
+│   │   └── index.ts
+│   └── index.ts            # Main export file
+├── styles.css              # Tailwind CSS imports
+├── tailwind.config.ts      # Tailwind configuration
+└── package.json
 ```
 
 ## Component Architecture

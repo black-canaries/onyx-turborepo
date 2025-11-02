@@ -20,14 +20,14 @@ Centralize ESLint rules and configurations to maintain code consistency across:
 
 ```
 packages/eslint-config/
-??? base.js                 # Base configuration
-??? next.js                 # Next.js-specific rules
-??? electron.js             # Electron-specific rules
-??? react-internal.js        # React internal rules
-??? react-native.js         # React Native-specific rules
-??? node.js                 # Node.js-specific rules
-??? package.json
-??? README.md
+├── base.js                 # Base configuration
+├── next.js                 # Next.js-specific rules
+├── electron.js             # Electron-specific rules
+├── react-internal.js        # React internal rules
+├── react-native.js         # React Native-specific rules
+├── node.js                 # Node.js-specific rules
+├── package.json
+└── README.md
 ```
 
 ## Configuration Files

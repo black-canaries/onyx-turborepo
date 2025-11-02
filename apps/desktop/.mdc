@@ -20,15 +20,15 @@ This is an Electron desktop application that uses Next.js 16 as its renderer pro
 
 ```
 apps/desktop/
-??? electron/               # Electron main process code
-?   ??? main.ts            # Main process entry point
-?   ??? preload.ts         # Preload script (bridge)
-?   ??? tsconfig.json      # TypeScript config for Electron
-??? src/                    # Next.js renderer code (same as web)
-?   ??? app/               # App Router (shared structure with web)
-??? dist-electron/         # Compiled Electron main process
-??? next.config.ts         # Next.js config
-??? package.json
+├── electron/               # Electron main process code
+│   ├── main.ts            # Main process entry point
+│   ├── preload.ts         # Preload script (bridge)
+│   └── tsconfig.json      # TypeScript config for Electron
+├── src/                    # Next.js renderer code (same as web)
+│   └── app/               # App Router (shared structure with web)
+├── dist-electron/         # Compiled Electron main process
+├── next.config.ts         # Next.js config
+└── package.json
 ```
 
 ## Electron Architecture
@@ -77,10 +77,10 @@ pnpm build
 ## Electron-Specific Guidelines
 
 ### Security Best Practices
-- ? `contextIsolation: true` - Isolates main and renderer contexts
-- ? `nodeIntegration: false` - Prevents Node.js access in renderer
-- ? Preload script for safe IPC bridge
-- ? Use IPC handlers for main process operations
+- `contextIsolation: true` - Isolates main and renderer contexts
+- `nodeIntegration: false` - Prevents Node.js access in renderer
+- Preload script for safe IPC bridge
+- Use IPC handlers for main process operations
 
 ### IPC Communication Pattern
 ```typescript
