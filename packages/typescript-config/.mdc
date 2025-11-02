@@ -20,15 +20,15 @@ Centralize TypeScript compiler options to maintain type safety and consistency a
 
 ```
 packages/typescript-config/
-??? base.json               # Base TypeScript configuration
-??? nextjs.json             # Next.js-specific config
-??? node.json               # Node.js-specific config
-??? electron.json           # Electron-specific config
-??? expo.json               # Expo/React Native config
-??? react-library.json      # React library config
-??? backend.json            # Backend/server config
-??? package.json
-??? README.md
+├── base.json               # Base TypeScript configuration
+├── nextjs.json             # Next.js-specific config
+├── node.json               # Node.js-specific config
+├── electron.json           # Electron-specific config
+├── expo.json               # Expo/React Native config
+├── react-library.json      # React library config
+├── backend.json            # Backend/server config
+├── package.json
+└── README.md
 ```
 
 ## Configuration Files

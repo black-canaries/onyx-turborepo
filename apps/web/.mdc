@@ -19,15 +19,15 @@ This is a Next.js 16 web application using the App Router, React Server Componen
 
 ```
 apps/web/
-??? app/                    # App Router directory
-?   ??? layout.tsx          # Root layout with providers
-?   ??? page.tsx            # Home page
-?   ??? providers.tsx       # Client-side providers (Convex, Supabase)
-?   ??? components/         # App-specific components
-?   ??? globals.css         # Global styles
-??? public/                 # Static assets
-??? next.config.js          # Next.js configuration
-??? package.json
+├── app/                    # App Router directory
+│   ├── layout.tsx          # Root layout with providers
+│   ├── page.tsx            # Home page
+│   ├── providers.tsx       # Client-side providers (Convex, Supabase)
+│   ├── components/         # App-specific components
+│   └── globals.css         # Global styles
+├── public/                 # Static assets
+├── next.config.js          # Next.js configuration
+└── package.json
 ```
 
 ## Next.js 16 Specific Guidelines

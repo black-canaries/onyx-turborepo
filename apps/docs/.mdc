@@ -22,12 +22,12 @@ Documentation site for the monorepo, providing information about the project str
 
 ```
 apps/docs/
-??? app/                    # Next.js App Router
-?   ??? layout.tsx
-?   ??? page.tsx
-?   ??? page.module.css     # CSS modules (if used)
-??? public/                 # Static assets
-??? package.json
+├── app/                    # Next.js App Router
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── page.module.css     # CSS modules (if used)
+├── public/                 # Static assets
+└── package.json
 ```
 
 ## Guidelines

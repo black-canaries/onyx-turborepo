@@ -20,13 +20,13 @@ This is an Expo/React Native mobile application (SDK 54) that shares backend cli
 
 ```
 apps/mobile/
-??? App.tsx                 # Root component
-??? index.ts                # Entry point
-??? assets/                 # Images, fonts, etc.
-??? app.json                # Expo configuration
-??? babel.config.js         # Babel configuration
-??? metro.config.js         # Metro bundler config
-??? package.json
+├── App.tsx                 # Root component
+├── index.ts                # Entry point
+├── assets/                 # Images, fonts, etc.
+├── app.json                # Expo configuration
+├── babel.config.js         # Babel configuration
+├── metro.config.js         # Metro bundler config
+└── package.json
 ```
 
 ## Expo SDK 54 Guidelines

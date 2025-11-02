@@ -21,11 +21,11 @@ Provides consistent Convex client initialization across all apps in the monorepo
 
 ```
 packages/convex/
-??? src/
-?   ??? client.ts           # Browser/React client wrappers
-?   ??? server.ts           # Server-side client wrappers
-?   ??? index.ts            # Main exports
-??? package.json
+├── src/
+│   ├── client.ts           # Browser/React client wrappers
+│   ├── server.ts           # Server-side client wrappers
+│   └── index.ts            # Main exports
+└── package.json
 ```
 
 ## API Reference
