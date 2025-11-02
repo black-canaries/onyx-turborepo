@@ -1,0 +1,90 @@
+---
+description: Monorepo-level guidelines for Turborepo workspace structure, shared packages, and cross-platform development
+alwaysApply: true
+---
+
+# Monorepo Structure & Guidelines
+
+This is a Turborepo monorepo using PNPM workspaces, containing multiple apps and shared packages.
+
+## Project Structure
+
+### Apps
+- `apps/web` - Next.js 16 web application
+- `apps/desktop` - Electron desktop app with Next.js renderer
+- `apps/mobile` - Expo/React Native mobile application
+- `apps/docs` - Next.js documentation site
+
+### Shared Packages
+- `@repo/ui` - Shared UI component library (shadcn/ui based)
+- `@repo/convex` - Convex backend client wrapper
+- `@repo/supabase` - Supabase backend client wrapper
+- `@repo/eslint-config` - Shared ESLint configurations
+- `@repo/typescript-config` - Shared TypeScript configurations
+
+## Monorepo Best Practices
+
+### Package Management
+- Use PNPM workspace protocol (`workspace:*`) for internal dependencies
+- Always use `pnpm` commands, never `npm` or `yarn`
+- Run commands from root: `pnpm dev`, `pnpm build`, `pnpm lint`
+- Use Turbo filters for specific packages: `pnpm turbo build --filter=web`
+
+### Turborepo Configuration
+- Tasks are defined in `turbo.json` at root
+- Shared tasks: `build`, `dev`, `lint`, `check-types`
+- Build outputs: `.next/**`, `dist-electron/**`
+- Cache is enabled for `build`, `lint`, `check-types`
+- `dev` tasks are persistent and not cached
+
+### Workspace Dependencies
+- Apps import from `@repo/*` packages using workspace protocol
+- Shared packages must be transpiled in Next.js configs (`transpilePackages`)
+- TypeScript paths are configured via `@repo/typescript-config`
+
+### Environment Variables
+- Use platform-specific prefixes:
+  - Next.js: `NEXT_PUBLIC_*`
+  - Expo: `EXPO_PUBLIC_*`
+  - Server-only: No prefix (e.g., `CONVEX_URL`, `SUPABASE_URL`)
+- Global env vars are defined in `turbo.json` for cache invalidation
+
+### Cross-Platform Considerations
+- Shared UI components must work across web, desktop, and mobile
+- Use `@repo/ui` for web/desktop components
+- Use `@repo/ui/native` for React Native components
+- Backend clients handle platform differences internally
+
+## Development Workflow
+
+### Running Tasks
+```bash
+# Develop all apps
+pnpm dev
+
+# Develop specific app
+pnpm turbo dev --filter=web
+
+# Build everything
+pnpm build
+
+# Lint all packages
+pnpm lint
+```
+
+### Adding Dependencies
+- Add to specific package: `cd apps/web && pnpm add <package>`
+- Add to root: `pnpm add -w -D <package>`
+- Use `-w` flag for workspace root dependencies
+
+### Code Organization
+- Keep platform-specific code in respective app directories
+- Extract shared logic to packages
+- Use TypeScript strictly across all packages
+- Follow ESLint rules from `@repo/eslint-config`
+
+## Important Notes
+- This is a multiplatform monorepo - consider web, desktop, and mobile when making changes
+- Shared packages are consumed by multiple apps - changes affect all platforms
+- Backend clients (`@repo/convex`, `@repo/supabase`) handle environment variable resolution automatically
+- Always check if functionality should be shared before adding to a specific app
