@@ -2,8 +2,15 @@
   "extends": "@repo/typescript-config/react-library",
   "compilerOptions": {
     "outDir": "dist",
-    "types": ["react"]
+    "types": ["react"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "skipLibCheck": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "**/*.story.tsx", "**/*.demo.tsx"]
 }
