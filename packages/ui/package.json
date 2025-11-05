@@ -52,6 +52,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@untitledui/file-icons": "^0.0.9",
     "@untitledui/icons": "^0.0.19",
+    "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "motion": "^12.23.12",
