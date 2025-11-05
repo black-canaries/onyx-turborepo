@@ -1,5 +1,5 @@
 {
-  "extends": "@repo/typescript-config/expo",
+  "extends": "../../packages/typescript-config/expo.json",
   "compilerOptions": {
     "strict": true,
     "types": [
@@ -7,5 +7,12 @@
       "react",
       "react-native"
     ]
-  }
+  },
+  "include": [
+    "nativewind-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
+  ]
 }

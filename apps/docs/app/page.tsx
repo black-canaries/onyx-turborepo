@@ -7,7 +7,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@repo/ui";
+} from "@repo/ui-web";
 
 const guides = [
   {

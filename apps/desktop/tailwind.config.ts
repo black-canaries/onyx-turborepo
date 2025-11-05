@@ -1,13 +1,13 @@
 import type { Config } from "tailwindcss";
-import sharedConfig from "@repo/ui/tailwind.config";
+import sharedConfig from "../../packages/ui-web/tailwind.config";
 
 const config: Config = {
   ...sharedConfig,
   content: [
     "./src/app/**/*.{ts,tsx,mdx}",
     "./src/components/**/*.{ts,tsx,mdx}",
-    "../../packages/ui/src/**/*.{ts,tsx}",
+    "../../packages/ui-web/src/**/*.{ts,tsx}",
   ],
-};
+} as Config;;
 
 export default config;

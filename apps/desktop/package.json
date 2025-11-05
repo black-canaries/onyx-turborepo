@@ -20,7 +20,7 @@
   "dependencies": {
     "@repo/convex": "workspace:*",
     "@repo/supabase": "workspace:*",
-    "@repo/ui": "workspace:*",
+    "@repo/ui-web": "workspace:*",
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0"
@@ -28,19 +28,16 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@tailwindcss/postcss": "^4.1.16",
     "@types/electron": "^1.6.0",
+    "tailwindcss": "^3.4.17",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
-    "autoprefixer": "^10.4.20",
     "concurrently": "^9.1.0",
     "cross-env": "^7.0.3",
     "electron": "^31.7.7",
     "eslint": "^9.38.0",
     "eslint-config-next": "16.0.1",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^4.1.16",
     "typescript": "5.9.2",
     "wait-on": "^7.2.0"
   }

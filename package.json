@@ -18,6 +18,11 @@
     "node": ">=18"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["electron"]
+    "onlyBuiltDependencies": [
+      "electron"
+    ],
+    "overrides": {
+      "lightningcss": "1.30.1"
+    }
   }
 }

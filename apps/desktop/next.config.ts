@@ -1,8 +1,9 @@
+/** @type {import('next').NextConfig} */
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
-  transpilePackages: ["@repo/ui", "@repo/convex", "@repo/supabase"],
+  transpilePackages: ["@repo/ui-web", "@repo/convex", "@repo/supabase"],
 };
 
 export default nextConfig;

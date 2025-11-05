@@ -9,7 +9,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@repo/ui";
+} from "@repo/ui-web";
 import { createSupabaseBrowserClient } from "@repo/supabase";
 import { createConvexReactClient } from "@repo/convex";
 

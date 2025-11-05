@@ -54,7 +54,7 @@ apps/web/
 
 #### UI Components
 ```tsx
-import { Button, Card, Badge } from "@repo/ui";
+import { Button, Card, Badge } from "@repo/ui-web";
 // Use shadcn/ui components from shared package
 ```
 

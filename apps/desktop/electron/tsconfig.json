@@ -1,5 +1,5 @@
 {
-  "extends": "@repo/typescript-config/electron",
+  "extends": "../../packages/typescript-config/electron.json",
   "compilerOptions": {
     "outDir": "../dist-electron",
     "rootDir": "./",
