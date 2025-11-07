@@ -1,4 +1,4 @@
-@import "@repo/ui/styles.css";
+@import "@repo/ui/styles/globals.css";
 @import "tailwindcss";
 
 @layer base {

@@ -7,12 +7,13 @@
     "**/*.css"
   ],
   "exports": {
+    ".": "./dist/index.js",
     "./styles/globals.css": "./dist/index.css",
     "./*": "./dist/*.js"
   },
   "scripts": {
     "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css",
-    "build:components": "tsc",
+    "build:components": "tsc && tsc-alias",
     "check-types": "tsc --noEmit",
     "dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css --watch",
     "dev:components": "tsc --watch",
@@ -55,20 +56,24 @@
     "zod": "^4.0.17"
   },
   "devDependencies": {
+    "@react-types/overlays": "^3.8.12",
+    "@react-types/shared": "^3.26.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
+    "@storybook/nextjs": "^10.0.1",
+    "@tailwindcss/cli": "^4.1.5",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
-    "@tailwindcss/cli": "^4.1.5",
-    "eslint": "^9.38.0",
     "autoprefixer": "^10.4.20",
+    "eslint": "^9.38.0",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "storybook": "^10.0.1",
     "tailwindcss": "^4.1.5",
+    "tsc-alias": "^1.8.10",
     "typescript": "5.9.2"
   }
 }

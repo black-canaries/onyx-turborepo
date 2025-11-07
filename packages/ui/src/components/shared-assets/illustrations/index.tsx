@@ -6,7 +6,7 @@ import { CloudIllustration } from "./cloud";
 import { CreditCardIllustration } from "./credit-card";
 import { DocumentsIllustration } from "./documents";
 
-const types = {
+const types: Record<string, React.ComponentType<IllustrationProps>> = {
     box: BoxIllustration,
     cloud: CloudIllustration,
     documents: DocumentsIllustration,
@@ -22,7 +22,7 @@ export interface IllustrationProps extends HTMLAttributes<HTMLDivElement> {
 export const Illustration = (props: IllustrationProps & { type: keyof typeof types }) => {
     const { type } = props;
 
-    const Component = types[type];
+    const Component = types[type]!;
 
     return <Component {...props} />;
 };
