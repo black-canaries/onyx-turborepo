@@ -3,64 +3,72 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "default": "./src/index.ts"
-    },
-    "./styles.css": "./styles.css",
-    "./lib/utils": {
-      "types": "./src/lib/utils.ts",
-      "default": "./src/lib/utils.ts"
-    },
-    "./native": {
-      "types": "./src/native/index.ts",
-      "default": "./src/native/index.ts"
-    },
-    "./tailwind.config": {
-      "types": "./tailwind.config.ts",
-      "default": "./tailwind.config.ts"
-    }
+    "./styles/globals.css": "./dist/index.css",
+    "./*": "./dist/*.js"
+  },
+  "scripts": {
+    "build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css",
+    "build:components": "tsc",
+    "check-types": "tsc --noEmit",
+    "dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/index.css --watch",
+    "dev:components": "tsc --watch",
+    "lint": "eslint src --max-warnings 0"
   },
   "files": [
-    "src",
-    "styles.css",
-    "tailwind.config.ts",
-    "postcss.config.mjs"
+    "dist"
   ],
-  "scripts": {
-    "lint": "eslint . --max-warnings 0",
-    "check-types": "tsc --noEmit"
-  },
   "peerDependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-native": "^0.76.0 || ^0.77.0"
+    "react-dom": "^19.0.0"
   },
   "peerDependenciesMeta": {
     "react-dom": {
       "optional": true
-    },
-    "react-native": {
-      "optional": true
     }
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.1.0",
-    "class-variance-authority": "^0.7.1",
+    "@internationalized/date": "^3.10.0",
+    "@react-aria/utils": "^3.31.0",
+    "@react-stately/utils": "^3.10.8",
+    "@tailwindcss/typography": "^0.5.16",
+    "@untitledui/file-icons": "^0.0.9",
+    "@untitledui/icons": "^0.0.19",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.472.0",
-    "tailwind-merge": "^2.4.0"
+    "embla-carousel-react": "^8.6.0",
+    "input-otp": "^1.4.2",
+    "motion": "^12.23.12",
+    "next-themes": "^0.4.6",
+    "qr-code-styling": "^1.9.2",
+    "react-aria": "^3.44.0",
+    "react-aria-components": "^1.13.0",
+    "react-hook-form": "^7.62.0",
+    "react-stately": "^3.10.8",
+    "recharts": "^3.1.2",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-react-aria-components": "^2.0.0",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
+    "@tailwindcss/cli": "^4.1.5",
     "eslint": "^9.38.0",
     "autoprefixer": "^10.4.20",
-    "tailwindcss": "^4.1.16",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "storybook": "^10.0.1",
+    "tailwindcss": "^4.1.5",
     "typescript": "5.9.2"
   }
 }

@@ -15,6 +15,7 @@
   "exports": {
     "./base": "./base.json",
     "./next": "./nextjs.json",
+    "./nextjs": "./nextjs.json",
     "./react-library": "./react-library.json",
     "./expo": "./expo.json",
     "./electron": "./electron.json",

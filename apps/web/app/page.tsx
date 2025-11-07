@@ -1,96 +1,98 @@
-import Link from "next/link";
-import {
-  Badge,
-  Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui";
-import { BackendStatus } from "./components/backend-status";
-
-const features = [
-  {
-    title: "Shared UI with shadcn/ui",
-    description:
-      "Import ready-to-use components from @repo/ui to keep design tokens centralised across platforms.",
-  },
-  {
-    title: "Backend helpers",
-    description:
-      "Bootstrap Convex and Supabase clients from shared wrappers so every app uses the same conventions.",
-  },
-  {
-    title: "Typed workspaces",
-    description:
-      "A single TypeScript and ESLint configuration ensures consistent tooling between web, mobile, and desktop.",
-  },
-];
+import { Button } from "@repo/ui";
+import { AppShell } from "./components/app-shell";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col gap-12 px-6 py-16">
-      <section className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
-        <div className="flex flex-col gap-6">
-          <Badge variant="secondary" className="w-fit">
-            Multiplatform app
-          </Badge>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">
-            Full-stack monorepo with shared UI, backend clients, and platform targets.
+    <AppShell>
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <section className="mb-16 text-center">
+          <h1 className="mb-4 text-display-md font-semibold tracking-tight">
+            Welcome to Onyx
           </h1>
-          <p className="text-lg text-muted-foreground">
-            Next.js for web & desktop, Expo for mobile, and Electron for desktop shell — all powered by shared
-            packages that keep implementation details in sync.
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-fg-quaternary">
+            A modern full-stack monorepo built with Untitled UI components.
+            Beautiful, accessible, and ready to scale.
           </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <Button asChild>
-              <Link href="https://turbo.build" target="_blank">
-                Explore Turbo
-              </Link>
+          <div className="flex items-center justify-center gap-3">
+            <Button color="primary" size="lg">
+              Get Started
             </Button>
-            <Button asChild variant="ghost">
-              <Link href="https://github.com/vercel/turborepo" target="_blank">
-                View reference
-              </Link>
+            <Button color="secondary" size="lg">
+              Learn More
             </Button>
           </div>
-        </div>
-        <Card>
-          <CardHeader>
-            <CardTitle>Workspace at a glance</CardTitle>
-            <CardDescription>
-              Shared packages are consumed by every target so upgrades happen once.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2 text-sm text-muted-foreground">
-            <p>• `apps/web` — Next.js 16 web app using shared UI and backend clients.</p>
-            <p>• `apps/mobile` — Expo app importing native UI primitives and helpers.</p>
-            <p>• `apps/desktop` — Electron shell with Next.js renderer consuming shared modules.</p>
-          </CardContent>
-        </Card>
-      </section>
+        </section>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {features.map((feature) => (
-          <Card key={feature.title}>
-            <CardHeader>
-              <CardTitle className="text-base">{feature.title}</CardTitle>
-              <CardDescription>{feature.description}</CardDescription>
-            </CardHeader>
-          </Card>
-        ))}
-      </section>
+        {/* Features Grid */}
+        <section className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-xl border border-secondary bg-primary p-6">
+            <div className="mb-4 inline-flex rounded-lg bg-brand-solid/10 p-3">
+              <svg
+                className="size-6 text-brand-solid"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-lg font-semibold">Lightning Fast</h3>
+            <p className="text-sm text-fg-quaternary">
+              Built on modern web technologies for optimal performance and user experience.
+            </p>
+          </div>
 
-      <section className="space-y-4">
-        <div>
-          <h2 className="text-2xl font-semibold">Backend connections</h2>
-          <p className="text-sm text-muted-foreground">
-            Drop environment variables into `.env` files to activate the shared Convex and Supabase clients.
-          </p>
-        </div>
-        <BackendStatus />
-      </section>
-    </main>
+          <div className="rounded-xl border border-secondary bg-primary p-6">
+            <div className="mb-4 inline-flex rounded-lg bg-brand-solid/10 p-3">
+              <svg
+                className="size-6 text-brand-solid"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-lg font-semibold">Secure by Default</h3>
+            <p className="text-sm text-fg-quaternary">
+              Enterprise-grade security features built in from the ground up.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-secondary bg-primary p-6">
+            <div className="mb-4 inline-flex rounded-lg bg-brand-solid/10 p-3">
+              <svg
+                className="size-6 text-brand-solid"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-lg font-semibold">Fully Customizable</h3>
+            <p className="text-sm text-fg-quaternary">
+              Tailor every aspect to match your brand and requirements.
+            </p>
+          </div>
+        </section>
+      </div>
+    </AppShell>
   );
 }

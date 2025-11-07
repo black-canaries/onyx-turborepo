@@ -1,23 +1,18 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import { cn } from "@repo/ui";
+import { Inter } from "next/font/google";
 import { Providers } from "./providers";
+import { Theme } from "./providers/theme";
+import "@repo/ui/styles/global.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  display: "swap",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Turbo Template Web",
-  description: "Next.js application sharing packages across the Turborepo",
+  title: "Onyx - Built with Untitled UI",
+  description: "A modern application built with Untitled UI components",
 };
 
 export default function RootLayout({
@@ -26,15 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans text-foreground antialiased",
-          geistSans.variable,
-          geistMono.variable
-        )}
-      >
-        <Providers>{children}</Providers>
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-primary antialiased">
+        <Providers>
+          <Theme>
+            {children}
+          </Theme>
+        </Providers>
       </body>
     </html>
   );
