@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "@repo/ui/styles.css";
 import { cx } from "@repo/ui";
 import { Providers } from "./providers";
+import { Theme } from "./providers/theme";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,13 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cx(
-          "min-h-screen antialiased",
-          inter.variable
-        )}
-      >
-        <Providers>{children}</Providers>
+      <body className={cx(inter.variable, "bg-primary antialiased")}>
+        <Providers>
+          <Theme>
+            {children}
+          </Theme>
+        </Providers>
       </body>
     </html>
   );
