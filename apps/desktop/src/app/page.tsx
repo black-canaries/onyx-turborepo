@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   Badge,
@@ -33,7 +35,7 @@ export default function Home() {
     <main className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col gap-12 px-6 py-16">
       <section className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
         <div className="flex flex-col gap-6">
-          <Badge variant="secondary" className="w-fit">
+          <Badge color="gray" className="w-fit">
             Multiplatform app
           </Badge>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">
@@ -44,16 +46,16 @@ export default function Home() {
             packages that keep implementation details in sync.
           </p>
           <div className="flex flex-wrap items-center gap-3">
-            <Button asChild>
-              <Link href="https://turbo.build" target="_blank">
+            <Link href="https://turbo.build" target="_blank">
+              <Button>
                 Explore Turbo
-              </Link>
-            </Button>
-            <Button asChild variant="ghost">
-              <Link href="https://github.com/vercel/turborepo" target="_blank">
+              </Button>
+            </Link>
+            <Link href="https://github.com/vercel/turborepo" target="_blank">
+              <Button color="secondary">
                 View reference
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
         <Card>

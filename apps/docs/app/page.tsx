@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   Badge,
@@ -31,7 +33,7 @@ export default function DocsHome() {
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-6 py-16">
       <section className="space-y-6">
-        <Badge variant="secondary" className="w-fit">
+        <Badge color="gray" className="w-fit">
           Template handbook
         </Badge>
         <h1 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-5xl">
@@ -42,16 +44,16 @@ export default function DocsHome() {
           clients, and tooling flow across the monorepo.
         </p>
         <div className="flex flex-wrap gap-3">
-          <Button asChild>
-            <Link href="https://github.com/vercel/turborepo" target="_blank">
+          <Link href="https://github.com/vercel/turborepo" target="_blank">
+            <Button>
               View repo reference
-            </Link>
-          </Button>
-          <Button asChild variant="ghost">
-            <Link href="https://turbo.build/" target="_blank">
+            </Button>
+          </Link>
+          <Link href="https://turbo.build/" target="_blank">
+            <Button color="secondary">
               Turborepo docs
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -63,11 +65,11 @@ export default function DocsHome() {
               <CardDescription>{guide.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button asChild variant="ghost">
-                <a href={guide.link} target="_blank" rel="noreferrer">
+              <a href={guide.link} target="_blank" rel="noreferrer">
+                <Button color="secondary">
                   Read more
-                </a>
-              </Button>
+                </Button>
+              </a>
             </CardContent>
           </Card>
         ))}
@@ -80,18 +82,20 @@ export default function DocsHome() {
           the template will land on this page first.
         </p>
         <div className="flex flex-wrap gap-3">
-          <Button asChild variant="secondary">
-            <Link href="/">Back to docs homepage</Link>
-          </Button>
-          <Button asChild variant="ghost">
-            <a
-              href="https://turbo.build/repo/docs/core-concepts/pipelines"
-              target="_blank"
-              rel="noreferrer"
-            >
+          <Link href="/">
+            <Button color="secondary">
+              Back to docs homepage
+            </Button>
+          </Link>
+          <a
+            href="https://turbo.build/repo/docs/core-concepts/pipelines"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Button color="secondary">
               Pipelines overview
-            </a>
-          </Button>
+            </Button>
+          </a>
         </div>
       </section>
     </main>

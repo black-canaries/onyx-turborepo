@@ -1,0 +1,15 @@
+/**
+ * App-specific Tailwind CSS compilation
+ * This file compiles Tailwind classes used in the web app's code.
+ * UI component styles are imported separately from @repo/ui/styles/globals.css
+ */
+
+@import "tailwindcss";
+
+/* Import shared design tokens from @repo/ui */
+@import "@repo/ui/styles/theme.css";
+
+/* Configure content scanning for this app only */
+@source "../app/**/*.{ts,tsx}";
+
+/* App-specific custom utilities can be added below */
