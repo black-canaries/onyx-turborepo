@@ -1,0 +1,11 @@
+{
+  "extends": "../packages/typescript-config/base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "allowJs": true
+  },
+  "include": ["."],
+  "exclude": ["node_modules", "_generated"]
+}
