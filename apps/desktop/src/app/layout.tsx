@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
-import { cn } from "@repo/ui";
+import "@repo/ui/styles/globals.css";
+import "./styles.css";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -29,9 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={cn(
-          "min-h-screen bg-background text-foreground antialiased"
-        )}
+        className="min-h-screen bg-background text-foreground antialiased"
       >
         <Providers>{children}</Providers>
       </body>

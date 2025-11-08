@@ -71,7 +71,7 @@ export function BackendStatus() {
           <CardHeader>
             <CardTitle className="flex items-center justify-between gap-3 text-base">
               {integration.title}
-              <Badge variant={integration.configured ? "secondary" : "destructive"}>
+              <Badge color={integration.configured ? "success" : "error"}>
                 {integration.configured ? "Connected" : "Awaiting env"}
               </Badge>
             </CardTitle>
@@ -83,23 +83,22 @@ export function BackendStatus() {
                 ? "Clients are ready to be consumed throughout the workspace."
                 : "Populate the .env file to enable the shared client helpers."}
             </div>
-            <Button asChild variant="ghost">
-              <a
-                href={integration.docs}
-                target="_blank"
-                rel="noreferrer"
-                onClick={(event) => {
-                  if (window.desktopBridge?.openExternal) {
-                    event.preventDefault();
-                    void window.desktopBridge.openExternal(integration.docs).catch(() => {
-                      window.open(integration.docs, "_blank");
-                    });
-                  }
-                }}
-              >
-                Docs
-              </a>
-            </Button>
+            <a
+              href={integration.docs}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(event) => {
+                if (window.desktopBridge?.openExternal) {
+                  event.preventDefault();
+                  void window.desktopBridge.openExternal(integration.docs).catch(() => {
+                    window.open(integration.docs, "_blank");
+                  });
+                }
+              }}
+              className="text-sm text-brand-solid hover:underline"
+            >
+              View docs
+            </a>
           </CardContent>
         </Card>
       ))}

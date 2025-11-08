@@ -1,5 +1,7 @@
-@import "tailwindcss";
-@import "@repo/ui/styles/globals.css";
+/*
+ * Tailwind styles are imported via @repo/ui/styles/globals.css in layout.tsx
+ * This file contains app-specific style overrides
+ */
 
 @layer base {
   :root {

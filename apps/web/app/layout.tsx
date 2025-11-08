@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { Theme } from "./providers/theme";
-import "@repo/ui/styles/globals.css";
 
-// const inter = Inter({
-//   subsets: ["latin"],
-//   variable: "--font-inter",
-//   display: "swap",
-// });
+import "@repo/ui/styles/globals.css";
+import "./styles.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Onyx - Built with Untitled UI",
@@ -22,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-primary antialiased">
+      <body className={`${inter.variable} bg-primary antialiased`}>
         <Providers>
           <Theme>
             {children}
