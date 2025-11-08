@@ -1,0 +1,16 @@
+{
+  "extends": "@repo/typescript-config/react-library",
+  "compilerOptions": {
+    "types": ["react", "react-native", "nativewind/types"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "jsx": "react-native"
+  },
+  "include": ["src", "nativewind-env.d.ts"],
+  "exclude": ["node_modules"]
+}
