@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typedRoutes: true,
-  transpilePackages: ["@repo/ui", "@repo/convex"],
+  transpilePackages: ["@repo/convex"],
   typescript: {
     ignoreBuildErrors: true,
   },

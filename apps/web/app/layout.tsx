@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { Theme } from "./providers/theme";
-import "@repo/ui/styles/global.css";
+import "@repo/ui/styles/globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   variable: "--font-inter",
+//   display: "swap",
+// });
 
 export const metadata: Metadata = {
   title: "Onyx - Built with Untitled UI",

@@ -1,3 +1,5 @@
+import "./styles/globals.css";
+
 // Base Components - Avatar
 export * from "./components/base/avatar/avatar";
 export * from "./components/base/avatar/avatar-label-group";
@@ -52,7 +54,8 @@ export * from "./components/base/tooltip/tooltip";
 export { ButtonGroup, ButtonGroupItem } from "./components/base/button-group/button-group";
 export * from "./components/base/file-upload-trigger/file-upload-trigger";
 export * from "./components/base/form/form";
-export * from "./components/base/form/hook-form";
+// HookForm and FormField are exported from "./client" to avoid Next.js server component analysis issues
+// Import them from "@repo/ui/client" in client components only
 
 // Application Components - Navigation
 export * from "./components/application/app-navigation/header-navigation";

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@repo/ui";
 import { AppShell } from "./components/app-shell";
 

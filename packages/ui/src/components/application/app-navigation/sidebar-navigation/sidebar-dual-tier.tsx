@@ -28,10 +28,10 @@ interface SidebarNavigationDualTierProps {
 
 export const SidebarNavigationDualTier = ({ activeUrl, hideBorder, items, footerItems = [], featureCard }: SidebarNavigationDualTierProps) => {
     const activeItem = [...items, ...footerItems].find((item) => item.href === activeUrl || item.items?.some((subItem) => subItem.href === activeUrl));
-    const [currentItem, setCurrentItem] = useState(activeItem || items[1]);
+    const [currentItem, setCurrentItem] = useState(activeItem || items[1] || items[0]);
     const [isHovering, setIsHovering] = useState(false);
 
-    const isSecondarySidebarVisible = isHovering && Boolean(currentItem.items?.length);
+    const isSecondarySidebarVisible = isHovering && Boolean(currentItem?.items?.length);
 
     const MAIN_SIDEBAR_WIDTH = 296;
     const SECONDARY_SIDEBAR_WIDTH = 256;
@@ -60,7 +60,7 @@ export const SidebarNavigationDualTier = ({ activeUrl, hideBorder, items, footer
                     {items.map((item) => (
                         <li key={item.label + item.href} className="py-0.5">
                             <NavItemBase
-                                current={currentItem.href === item.href}
+                                current={currentItem?.href === item.href}
                                 href={item.href}
                                 badge={item.badge}
                                 icon={item.icon}
@@ -78,7 +78,7 @@ export const SidebarNavigationDualTier = ({ activeUrl, hideBorder, items, footer
                             {footerItems.map((item) => (
                                 <li key={item.label + item.href} className="py-0.5">
                                     <NavItemBase
-                                        current={currentItem.href === item.href}
+                                        current={currentItem?.href === item.href}
                                         href={item.href}
                                         badge={item.badge}
                                         icon={item.icon}
@@ -111,7 +111,7 @@ export const SidebarNavigationDualTier = ({ activeUrl, hideBorder, items, footer
                     className={cx("relative h-full overflow-x-hidden overflow-y-auto bg-primary", !hideBorder && "box-content border-r-[1.5px]")}
                 >
                     <ul style={{ width: SECONDARY_SIDEBAR_WIDTH }} className="flex h-full flex-col p-4 py-6">
-                        {currentItem.items?.map((item) => (
+                        {currentItem?.items?.map((item) => (
                             <li key={item.label + item.href} className="py-0.5">
                                 <NavItemBase current={activeUrl === item.href} href={item.href} icon={item.icon} badge={item.badge} type="link">
                                     {item.label}
