@@ -9,7 +9,8 @@
 /* Import shared design tokens from @repo/ui */
 @import "@repo/ui/styles/theme.css";
 
-/* Configure content scanning for this app only */
+/* Configure content scanning for this app and UI package */
 @source "../app/**/*.{ts,tsx}";
+@source "../../packages/ui/src/**/*.{ts,tsx}";
 
 /* App-specific custom utilities can be added below */

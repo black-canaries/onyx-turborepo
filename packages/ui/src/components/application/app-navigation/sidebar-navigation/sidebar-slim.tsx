@@ -35,9 +35,9 @@ interface SidebarNavigationSlimProps {
 export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hideBorder, hideRightBorder }: SidebarNavigationSlimProps) => {
     const activeItem = [...items, ...footerItems].find((item) => item.href === activeUrl || item.items?.some((subItem) => subItem.href === activeUrl));
     const [currentItem, setCurrentItem] = useState(activeItem || items[1] || items[0]);
-    const [isHovering, setIsHovering] = useState(false);
+    const [hoveredItem, setHoveredItem] = useState<(NavItemType & { icon: FC<{ className?: string }> }) | null>(null);
 
-    const isSecondarySidebarVisible = isHovering && Boolean(currentItem?.items?.length);
+    const isSecondarySidebarVisible = (hoveredItem !== null && Boolean(hoveredItem?.items?.length)) || (activeItem !== undefined && Boolean(activeItem?.items?.length));
 
     const MAIN_SIDEBAR_WIDTH = 68;
     const SECONDARY_SIDEBAR_WIDTH = 268;
@@ -72,6 +72,8 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                                 label={item.label || ""}
                                 icon={item.icon}
                                 onClick={() => setCurrentItem(item)}
+                                onMouseEnter={() => item.items && setHoveredItem(item)}
+                                onMouseLeave={() => setHoveredItem(null)}
                             />
                         </li>
                     ))}
@@ -88,6 +90,8 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                                         href={item.href}
                                         icon={item.icon}
                                         onClick={() => setCurrentItem(item)}
+                                        onMouseEnter={() => item.items && setHoveredItem(item)}
+                                        onMouseLeave={() => setHoveredItem(null)}
                                     />
                                 </li>
                             ))}
@@ -110,9 +114,9 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                                 cx(
                                     "will-change-transform",
                                     isEntering &&
-                                        "duration-300 ease-out animate-in fade-in placement-right:slide-in-from-left-2 placement-top:slide-in-from-bottom-2 placement-bottom:slide-in-from-top-2",
+                                    "duration-300 ease-out animate-in fade-in placement-right:slide-in-from-left-2 placement-top:slide-in-from-bottom-2 placement-bottom:slide-in-from-top-2",
                                     isExiting &&
-                                        "duration-150 ease-in animate-out fade-out placement-right:slide-out-to-left-2 placement-top:slide-out-to-bottom-2 placement-bottom:slide-out-to-top-2",
+                                    "duration-150 ease-in animate-out fade-out placement-right:slide-out-to-left-2 placement-top:slide-out-to-bottom-2 placement-bottom:slide-out-to-top-2",
                                 )
                             }
                         >
@@ -138,9 +142,9 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                     )}
                 >
                     <div style={{ width: SECONDARY_SIDEBAR_WIDTH }} className="flex h-full flex-col px-4 pt-6">
-                        <h3 className="text-sm font-semibold text-brand-secondary">{currentItem?.label}</h3>
+                        <h3 className="text-sm font-semibold text-brand-secondary">{(hoveredItem || activeItem)?.label}</h3>
                         <ul className="py-2">
-                            {currentItem?.items?.map((item) => (
+                            {(hoveredItem || activeItem)?.items?.map((item) => (
                                 <li key={item.label} className="py-0.5">
                                     <NavItemBase current={activeUrl === item.href} href={item.href} icon={item.icon} badge={item.badge} type="link">
                                         {item.label}
@@ -166,11 +170,7 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
     return (
         <>
             {/* Desktop sidebar navigation */}
-            <div
-                className="z-50 hidden lg:fixed lg:inset-y-0 lg:left-0 lg:flex"
-                onPointerEnter={() => setIsHovering(true)}
-                onPointerLeave={() => setIsHovering(false)}
-            >
+            <div className="z-50 hidden lg:fixed lg:top-2.5 lg:bottom-2.5 lg:left-2.5 lg:flex">
                 {mainSidebar}
                 {secondarySidebar}
             </div>
@@ -178,51 +178,53 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
             {/* Placeholder to take up physical space because the real sidebar has `fixed` position. */}
             <div
                 style={{
-                    paddingLeft: MAIN_SIDEBAR_WIDTH,
+                    paddingLeft: MAIN_SIDEBAR_WIDTH + 10,
                 }}
                 className="invisible hidden lg:sticky lg:top-0 lg:bottom-0 lg:left-0 lg:block"
             />
 
             {/* Mobile header navigation */}
-            <MobileNavigationHeader>
-                <aside className="group flex h-full max-h-full w-full max-w-full flex-col justify-between overflow-y-auto bg-primary pt-4">
-                    <div className="px-4">
-                        <UntitledLogo className="h-8" />
-                    </div>
-
-                    <NavList items={items} />
-
-                    <div className="mt-auto flex flex-col gap-5 px-2 py-4">
-                        <div className="flex flex-col gap-2">
-                            <NavItemBase current={activeUrl === "/support"} type="link" href="/support" icon={LifeBuoy01}>
-                                Support
-                            </NavItemBase>
-                            <NavItemBase current={activeUrl === "/settings"} type="link" href="/settings" icon={Settings01}>
-                                Settings
-                            </NavItemBase>
+            <div className="lg:hidden">
+                <MobileNavigationHeader>
+                    <aside className="group flex h-full max-h-full w-full max-w-full flex-col justify-between overflow-y-auto bg-primary pt-4">
+                        <div className="px-4">
+                            <UntitledLogo className="h-8" />
                         </div>
 
-                        <div className="relative flex items-center gap-3 border-t border-secondary pt-6 pr-8 pl-2">
-                            <AvatarLabelGroup
-                                status="online"
-                                size="md"
-                                src="https://www.untitledui.com/images/avatars/olivia-rhye?fm=webp&q=80"
-                                title="Olivia Rhye"
-                                subtitle="olivia@untitledui.com"
-                            />
+                        <NavList items={items} />
 
-                            <div className="absolute top-1/2 right-0 -translate-y-1/2">
-                                <Button
-                                    size="sm"
-                                    color="tertiary"
-                                    iconLeading={<LogOut01 className="size-5 text-fg-quaternary transition-inherit-all group-hover:text-fg-quaternary_hover" />}
-                                    className="p-1.5!"
+                        <div className="mt-auto flex flex-col gap-5 px-2 py-4">
+                            <div className="flex flex-col gap-2">
+                                <NavItemBase current={activeUrl === "/support"} type="link" href="/support" icon={LifeBuoy01}>
+                                    Support
+                                </NavItemBase>
+                                <NavItemBase current={activeUrl === "/settings"} type="link" href="/settings" icon={Settings01}>
+                                    Settings
+                                </NavItemBase>
+                            </div>
+
+                            <div className="relative flex items-center gap-3 border-t border-secondary pt-6 pr-8 pl-2">
+                                <AvatarLabelGroup
+                                    status="online"
+                                    size="md"
+                                    src="https://www.untitledui.com/images/avatars/olivia-rhye?fm=webp&q=80"
+                                    title="Olivia Rhye"
+                                    subtitle="olivia@untitledui.com"
                                 />
+
+                                <div className="absolute top-1/2 right-0 -translate-y-1/2">
+                                    <Button
+                                        size="sm"
+                                        color="tertiary"
+                                        iconLeading={<LogOut01 className="size-5 text-fg-quaternary transition-inherit-all group-hover:text-fg-quaternary_hover" />}
+                                        className="p-1.5!"
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </aside>
-            </MobileNavigationHeader>
+                    </aside>
+                </MobileNavigationHeader>
+            </div>
         </>
     );
 };

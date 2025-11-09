@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { Theme } from "./providers/theme";
+import { RouteProvider } from "./providers/route-provider";
+import { AppShell } from "./components/app-shell";
 
 import "@repo/ui/styles/globals.css";
 import "./styles.css";
@@ -25,11 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} bg-primary antialiased`}>
-        <Providers>
-          <Theme>
-            {children}
-          </Theme>
-        </Providers>
+        <RouteProvider>
+          <Providers>
+            <Theme>
+              <AppShell>{children}</AppShell>
+            </Theme>
+          </Providers>
+        </RouteProvider>
       </body>
     </html>
   );

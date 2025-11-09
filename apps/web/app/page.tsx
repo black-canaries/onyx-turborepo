@@ -1,12 +1,10 @@
-"use client";
+'use client';
 
 import { Button } from "@repo/ui";
-import { AppShell } from "./components/app-shell";
 
 export default function Home() {
   return (
-    <AppShell>
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <section className="mb-16 text-center">
           <h1 className="mb-4 text-display-md font-semibold tracking-tight">
@@ -95,6 +93,5 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </AppShell>
   );
 }
