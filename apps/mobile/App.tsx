@@ -1,3 +1,4 @@
+import "./global.css";
 import { StatusBar } from "expo-status-bar";
 import { useMemo } from "react";
 import {
@@ -8,7 +9,7 @@ import {
   View,
   Linking,
 } from "react-native";
-import { Button } from "@repo/ui/native";
+import { Button } from "@repo/ui-native";
 import { createSupabaseBrowserClient } from "@repo/supabase";
 import { createConvexReactClient } from "@repo/convex";
 
@@ -79,15 +80,17 @@ export default function App() {
           </Text>
           <View style={styles.actions}>
             <Button
-              label="Explore Turbo"
-              variant="primary"
+              color="primary"
               onPress={() => Linking.openURL("https://turbo.build")}
-            />
+            >
+              Explore Turbo
+            </Button>
             <Button
-              label="View reference"
-              variant="ghost"
+              color="tertiary"
               onPress={() => Linking.openURL("https://github.com/vercel/turborepo")}
-            />
+            >
+              View reference
+            </Button>
           </View>
         </View>
 
@@ -170,10 +173,12 @@ function StatusCard({ title, description, configured, docsUrl }: StatusCardProps
             : "Populate the .env file to enable the shared client helpers."}
         </Text>
         <Button
-          label="Docs"
-          variant="ghost"
+          color="tertiary"
+          size="sm"
           onPress={() => Linking.openURL(docsUrl)}
-        />
+        >
+          Docs
+        </Button>
       </View>
     </View>
   );
