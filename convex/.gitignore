@@ -1,0 +1,6 @@
+# Convex auto-generated files
+_generated/
+
+# Environment
+.env.local
+.env*.local
