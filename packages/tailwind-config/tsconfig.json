@@ -1,0 +1,11 @@
+{
+  "extends": "@repo/typescript-config/base",
+  "compilerOptions": {
+    "outDir": "native",
+    "rootDir": "native",
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": ["native/**/*.ts"],
+  "exclude": ["node_modules", "native/**/*.d.ts"]
+}

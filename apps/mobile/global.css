@@ -1,0 +1,15 @@
+/**
+ * NativeWind v5 global styles entry point
+ * This file is processed by Metro and provides Tailwind CSS for React Native
+ */
+
+/* Import Tailwind CSS layers using NativeWind v5 syntax */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+/* Import NativeWind theme additions */
+@import "nativewind/theme";
+
+/* Import shared design tokens from @repo/tailwind-config */
+@import "@repo/tailwind-config/css/theme";
