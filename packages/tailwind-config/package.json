@@ -1,0 +1,27 @@
+{
+  "name": "@repo/tailwind-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./css/theme": "./css/theme.css",
+    "./native/tokens": {
+      "types": "./native/tokens.d.ts",
+      "import": "./native/tokens.js",
+      "default": "./native/tokens.js"
+    }
+  },
+  "files": [
+    "css",
+    "native"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "lint": "echo 'No linting needed for config package'"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "5.9.2"
+  }
+}

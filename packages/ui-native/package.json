@@ -1,0 +1,32 @@
+{
+  "name": "@repo/ui-native",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src --max-warnings 0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-native": ">=0.70.0"
+  },
+  "dependencies": {
+    "@repo/tailwind-config": "workspace:*",
+    "clsx": "^2.1.1",
+    "react-native-reanimated": "^4.0.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "19.1.0",
+    "eslint": "^9.38.0",
+    "typescript": "5.9.2"
+  }
+}
