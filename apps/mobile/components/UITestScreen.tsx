@@ -112,22 +112,22 @@ export function UITestScreen() {
                 variant="primary"
                 onPress={() => setCount(count + 1)}
               >
-                Primary Button ({count})
+                <Text>Primary Button ({count})</Text>
               </Button>
               <Button variant="secondary" onPress={() => setCount(count + 1)}>
-                Secondary Button
+                <Text>Secondary Button</Text>
               </Button>
               <Button variant="tertiary" onPress={() => setCount(count + 1)}>
-                Tertiary Button
+                <Text>Tertiary Button</Text>
               </Button>
               <Button variant="link" onPress={() => setCount(count + 1)}>
-                Link Button
+                <Text>Link Button</Text>
               </Button>
               <Button
                 variant="destructive"
                 onPress={() => setCount(Math.max(0, count - 1))}
               >
-                Destructive Button
+                <Text>Destructive Button</Text>
               </Button>
             </View>
 
@@ -137,16 +137,16 @@ export function UITestScreen() {
                 Sizes
               </Text>
               <Button variant="primary" size="sm" onPress={() => {}}>
-                Small
+                <Text>Small</Text>
               </Button>
               <Button variant="primary" size="md" onPress={() => {}}>
-                Medium (Default)
+                <Text>Medium (Default)</Text>
               </Button>
               <Button variant="primary" size="lg" onPress={() => {}}>
-                Large
+                <Text>Large</Text>
               </Button>
               <Button variant="primary" size="xl" onPress={() => {}}>
-                Extra Large
+                <Text>Extra Large</Text>
               </Button>
             </View>
 
@@ -160,13 +160,13 @@ export function UITestScreen() {
                 isLoading={isLoading}
                 onPress={handleLoadingTest}
               >
-                {isLoading ? "Loading..." : "Test Loading State"}
+                <Text>{isLoading ? "Loading..." : "Test Loading State"}</Text>
               </Button>
               <Button variant="primary" disabled>
-                Disabled Button
+                <Text>Disabled Button</Text>
               </Button>
               <Button variant="secondary" disabled>
-                Disabled Secondary
+                <Text>Disabled Secondary</Text>
               </Button>
             </View>
 
@@ -176,7 +176,7 @@ export function UITestScreen() {
                 Full Width
               </Text>
               <Button variant="primary" fullWidth onPress={() => {}}>
-                Full Width Button
+                <Text>Full Width Button</Text>
               </Button>
             </View>
           </CardContent>
@@ -201,10 +201,10 @@ export function UITestScreen() {
           </CardContent>
           <CardFooter>
             <Button variant="primary" onPress={() => {}}>
-              Primary Action
+              <Text>Primary Action</Text>
             </Button>
             <Button variant="secondary" onPress={() => {}}>
-              Secondary
+              <Text>Secondary</Text>
             </Button>
           </CardFooter>
         </Card>

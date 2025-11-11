@@ -1,7 +1,7 @@
 {
   "extends": "@repo/typescript-config/react-library",
   "compilerOptions": {
-    "types": ["react", "react-native", "react-native-css/types"],
+    "types": ["react", "react-native"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
