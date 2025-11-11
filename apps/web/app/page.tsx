@@ -1,14 +1,41 @@
 'use client';
 
 import { Button } from "@repo/ui";
+import { UserProfile } from "./components/user-profile";
+import { useCurrentUser } from "./hooks/use-current-user";
+import Link from "next/link";
 
 export default function Home() {
+  const user = useCurrentUser();
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        {/* Auth Section */}
+        {user !== undefined && (
+          <div className="mb-8 flex justify-end">
+            {user === null ? (
+              <div className="flex items-center gap-3">
+                <Link href="/sign-in">
+                  <Button color="secondary" size="sm">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/sign-up">
+                  <Button color="primary" size="sm">
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <UserProfile />
+            )}
+          </div>
+        )}
+
         {/* Hero Section */}
         <section className="mb-16 text-center">
           <h1 className="mb-4 text-display-md font-semibold tracking-tight">
-            Welcome to Onyx
+            Welcome to Onyx{user?.name ? `, ${user.name}` : ""}
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-fg-quaternary">
             A modern full-stack monorepo built with Untitled UI components.

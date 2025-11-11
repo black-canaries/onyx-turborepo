@@ -1,5 +1,6 @@
 import { ConvexClient, ConvexHttpClient } from "convex/browser";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ConvexAuthProvider } from "@convex-dev/auth/react";
 
 export interface CreateConvexClientOptions {
   deploymentUrl?: string;
@@ -47,4 +48,4 @@ export function createConvexHttpClient(options: CreateConvexClientOptions = {}) 
   });
 }
 
-export { ConvexProvider };
+export { ConvexProvider, ConvexAuthProvider };
