@@ -6,18 +6,13 @@ import { Password } from "@convex-dev/auth/providers/Password";
  *
  * This file configures authentication providers for the app.
  * Currently using Password (email/password) authentication.
+ *
+ * The Password provider supports:
+ * - signUp: Create a new account
+ * - signIn: Sign in with existing account
+ * - Default password requirement: At least 8 characters
  */
 
 export const { auth, signIn, signOut, store } = convexAuth({
-  providers: [
-    Password({
-      // Customize the password validation if needed
-      // Default requires at least 8 characters
-      verify: async (params: { email: string; password: string }) => {
-        // You can add custom validation logic here
-        // For now, use default behavior
-        return params;
-      },
-    }),
-  ],
+  providers: [Password],
 });
